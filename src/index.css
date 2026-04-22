@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Roboto:wght@700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-roboto: "Roboto", sans-serif;
+  
+  --color-war-red: #ff3e3e;
+  --color-war-brown: #4a3728;
+  --color-war-white: #ffffff;
+  --color-war-bg: #f8f9fa;
+  --color-war-card: #ffffff;
+  --color-war-border: #dee2e6;
+
+  --color-background: #f8f9fa;
+  --color-foreground: #1a1a1a;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a1a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1a1a;
+  --color-primary: #ff3e3e;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #e9ecef;
+  --color-secondary-foreground: #1a1a1a;
+  --color-muted: #e9ecef;
+  --color-muted-foreground: #6c757d;
+  --color-accent: #f1f3f5;
+  --color-accent-foreground: #1a1a1a;
+  --color-destructive: #ff3e3e;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #dee2e6;
+  --color-input: #dee2e6;
+  --color-ring: #ff3e3e;
+
+  --radius-lg: 0.5rem;
+  --radius-md: 0.375rem;
+  --radius-sm: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-war-red/30;
+    background-image: 
+      radial-gradient(circle at 50% -20%, rgba(255, 62, 62, 0.03) 0%, transparent 50%),
+      linear-gradient(to bottom, #f8f9fa, #ffffff);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .glow-red {
+    text-shadow: 0 0 8px rgba(255, 62, 62, 0.3);
+  }
+  .glow-black {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .glow-brown {
+    text-shadow: 0 0 8px rgba(74, 55, 40, 0.3);
+  }
+  .border-glow {
+    box-shadow: 0 0 15px rgba(255, 62, 62, 0.05);
+  }
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 62, 62, 0.02) 50%, rgba(255, 255, 255, 0) 100%);
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 4s linear infinite;
+    pointer-events: none;
+  }
+  .hud-corner {
+    @apply absolute w-2 h-2 border-war-red/40;
+  }
+  .hud-corner-tl { @apply top-0 left-0 border-t border-l; }
+  .hud-corner-tr { @apply top-0 right-0 border-t border-r; }
+  .hud-corner-bl { @apply bottom-0 left-0 border-b border-l; }
+  .hud-corner-br { @apply bottom-0 right-0 border-b border-r; }
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  100% { bottom: -100px; }
+}
